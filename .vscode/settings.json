@@ -1,0 +1,6 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "js/ts.preferences.autoImportFileExcludePatterns": ["./src/stories/**/*"],
+  "js/ts.experimental.useTsgo": true
+}

@@ -1,0 +1,12 @@
+/* 
+  Order matters: navaigator emits unprefixed utilities (e.g. .grid-cols-2)
+  that must be overridden by Tailwind's responsive variants. See BUGS.md #7. 
+*/
+@import "@dfds-ui/navaigator/styles.css";
+@import "tailwindcss";
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

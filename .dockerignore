@@ -1,0 +1,11 @@
+node_modules
+.output
+.tanstack
+.git
+.temp
+.playwright-mcp
+.vscode
+.claude
+.agents
+local.db
+.DS_Store

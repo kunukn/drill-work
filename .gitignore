@@ -1,0 +1,22 @@
+node_modules
+dist
+.output
+.tanstack
+.vite
+*.local
+.DS_Store
+
+# local SQLite db (recreated on first dev run)
+local.db
+local.db-journal
+local.db-shm
+local.db-wal
+
+# generated route tree (TanStack regenerates on dev)
+src/routeTree.gen.ts
+
+# local development files
+.temp/
+settings.local.json
+.playwright-mcp
+

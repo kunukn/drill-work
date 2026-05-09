@@ -1,0 +1,17 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/app/src
+      - ./scripts:/app/scripts
+      - ./vite.config.ts:/app/vite.config.ts
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./drizzle.config.ts:/app/drizzle.config.ts
+      - db:/app/db
+    environment:
+      - DATABASE_URL=file:/app/db/local.db
+
+volumes:
+  db:

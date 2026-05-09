@@ -1,0 +1,73 @@
+{
+  "name": "drill-work",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "packageManager": "pnpm@10.33.2",
+  "scripts": {
+    "dev": "vite dev --port 3000",
+    "dev:new": "rm -f local.db && pnpm dev",
+    "dev:empty": "rm -f local.db && cross-env SKIP_SEED=1 pnpm dev",
+    "predev": "tsx scripts/setup.ts",
+    "build": "vite build",
+    "build:start": "pnpm build && cross-env PORT=4000 pnpm start",
+    "prebuild": "tsx scripts/setup.ts && pnpm typecheck",
+    "preview": "vite preview",
+    "start": "node .output/server/index.mjs",
+    "typecheck": "tsgo --project tsconfig.json --noEmit",
+    "typecheck:tsc": "tsc --project tsconfig.json --noEmit",
+    "typecheck:bench": "node scripts/bench-typecheck.js",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "prettier --write ./src",
+    "format:check": "prettier --check ./src",
+    "check": "pnpm typecheck && pnpm lint && pnpm format:check",
+    "db:generate": "drizzle-kit generate",
+    "db:setup": "tsx scripts/setup.ts",
+    "db:reset": "rm -f local.db && pnpm db:setup",
+    "prepush": "node scripts/pre-push-checks.js",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@asteasolutions/zod-to-openapi": "^7.3.0",
+    "@hookform/resolvers": "^5.2.2",
+    "@tanstack/react-query": "^5.100.8",
+    "@tanstack/react-router": "1.132.0",
+    "@tanstack/react-start": "1.132.0",
+    "@tanstack/router-plugin": "1.132.0",
+    "@typescript/native-preview": "7.0.0-dev.20260503.1",
+    "drizzle-orm": "^0.45.2",
+    "husky": "^9.1.7",
+    "ky": "^2.0.2",
+    "lint-staged": "^16.4.0",
+    "nitro": "3.0.1-alpha.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-hook-form": "^7.75.0",
+    "tsx": "^4.19.2",
+    "unplugin-auto-import": "^21.0.0",
+    "vite-tsconfig-paths": "^6.0.2",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@dfds-ui/navaigator": "1.1.1",
+    "@tailwindcss/vite": "^4.1.18",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "code-inspector-plugin": "^1.5.1",
+    "cross-env": "^10.1.0",
+    "drizzle-kit": "^0.31.0",
+    "oxlint": "^1.62.0",
+    "prettier": "^3.8.3",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.7.2",
+    "vite": "^7.3.2"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx,json,css,md}": "prettier --write"
+  }
+}

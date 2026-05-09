@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "navaigator": {
+      "type": "http",
+      "url": "https://nav-a-igator.vercel.app/mcp"
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"]
+    }
+  }
+}
