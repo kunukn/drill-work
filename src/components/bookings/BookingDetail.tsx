@@ -31,9 +31,11 @@ export function BookingDetail() {
           title="Booking not found"
           description={`No booking exists with id ${id}.`}
         />
-        <Button asChild variant="link" size="sm">
-          <Link to="/bookings">← Back to Bookings</Link>
-        </Button>
+        <div className="flex items-baseline gap-4">
+          <Button asChild variant="link" size="sm">
+            <Link to="/bookings">← Back to Bookings</Link>
+          </Button>
+        </div>
       </div>
     );
   }

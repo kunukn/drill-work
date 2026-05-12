@@ -79,7 +79,7 @@ export function BookingForm({ booking, customers, vessels }: BookingFormProps) {
 
   return (
     <div className="max-w-2xl">
-      <div className="flex items-center gap-4 mb-6">
+      <div className="flex items-baseline gap-4 mb-6">
         <Button asChild variant="link" size="sm">
           <Link to="/bookings">← Back to Bookings</Link>
         </Button>
