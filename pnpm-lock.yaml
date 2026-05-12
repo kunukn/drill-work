@@ -15,7 +15,7 @@ importers:
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.75.0(react@19.2.5))
       '@tanstack/react-query':
-        specifier: ^5.100.8
+        specifier: 5.100.8
         version: 5.100.8(react@19.2.5)
       '@tanstack/react-router':
         specifier: 1.132.0

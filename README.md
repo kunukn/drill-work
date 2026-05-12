@@ -16,16 +16,17 @@ Pick one of the two options below:
 Requires Node **>=22** (uses `node:sqlite`) and pnpm.
 
 ```bash
-pnpm install
-pnpm dev
+pnpm install --ignore-scripts   # block any dep's install-time scripts
+pnpm prepare                    # install husky git hooks (our own trusted script)
+pnpm predev                     # create + seed local.db
+pnpm dev                        # start dev server on http://localhost:3000
 ```
 
 Open <http://localhost:3000>.
 
-No manual DB step is needed. The `predev` hook runs [scripts/setup.ts](scripts/setup.ts) before the dev server starts, creating the SQLite tables in `local.db` and seeding them with data.
+**Why `--ignore-scripts`?** npm lifecycle hooks (`preinstall`, `postinstall`, `prepare`, `install`) on dependencies execute arbitrary code on your machine the moment they are installed — the primary vector behind recent supply-chain attacks (see [docs/SUPPLY_CHAIN_AUDIT.md](docs/SUPPLY_CHAIN_AUDIT.md)). This project has **no native-build dependencies**, so disabling them is safe; the only legitimate hook is our own `prepare → husky`, which we then run explicitly as a trusted step.
 
-Subsequent runs reuse your data. To wipe and reseed from scratch, run `pnpm db:reset`.
-To restart with initial seed run `pnpm dev:new`.
+`pnpm predev` runs [scripts/setup.ts](scripts/setup.ts) to create the SQLite tables in `local.db` and seed them with data. Subsequent runs: just `pnpm dev` (DB is already seeded). To wipe and reseed, run `pnpm db:reset`. To restart with the initial seed, run `pnpm dev:new`.
 
 ---
 
