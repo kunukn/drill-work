@@ -49,10 +49,13 @@ class ApiError extends Error {
   }
 }
 
-/* ky's default 10s timeout fights with `SIMULATE_LATENCY` and would mask
-   slow-server bugs in dev. Cancellation is owned by React Query (via the
-   AbortSignal it passes to queryFns), so we don't need ky's timer. */
-const http = ky.extend({ timeout: false });
+/* ky defaults fight with our setup:
+   - `timeout: false` — ky's default 10s timeout would race SIMULATE_LATENCY
+     and mask slow-server bugs. React Query owns cancellation via AbortSignal.
+   - `retry: 0` — ky's default retries DELETE/GET/PUT on 5xx (limit 2 = 3 total
+     attempts). We let TanStack Query own retry policy at the query layer;
+     mutations stay non-retrying so failed writes surface immediately. */
+const http = ky.extend({ timeout: false, retry: 0 });
 
 async function request<T>(url: string, init?: RequestInit): Promise<T> {
   try {
