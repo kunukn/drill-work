@@ -33,6 +33,8 @@ Goal: verify drill-work is not compromised and harden against future supply-chai
 
 **Verdict: clean.** No secret rotation required for this repo. Steps in the advisory regarding npm tokens / OIDC do not apply — drill-work is `private: true` and does not publish.
 
+**Re-verified 2026-05-16 — still clean.** Full playbook re-run (live `@tanstack/*` versions, IOC string scan, payload hash/drop scan across repo + `node_modules` + `~/.claude` + `~/.vscode`, `@tanstack` lifecycle-script check, git-author scan, config-vs-HEAD diff) prompted by a circulating embellished "Shai-Hulud / CVE-2026-45321" message. Every check negative; the message's scare claims and embedded "triage" command list are not actionable for this repo.
+
 ## Hardening applied
 
 - **Exact-pin** all direct `@tanstack/*` dependencies in `package.json` — no `^` ranges. `pnpm-lock.yaml` integrity hashes are the source of truth.
